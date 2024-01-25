@@ -67,6 +67,12 @@ export default function SmashProvider(props: React.PropsWithChildren<{}>) {
             setCurrentItem((prev) => ({ ...prev, image: base64data }))
           }
         }
+        const asText = await (await clipboardItem.getType('text/plain'))?.text().catch(() => {
+          return null
+        })
+        if (asText !== null && asText.startsWith('http')) {
+          setCurrentItem((prev) => ({ ...prev, image: asText }))
+        }
       }
     } catch (err: any) {
       console.error(err.name, err.message)

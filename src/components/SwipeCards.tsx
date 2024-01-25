@@ -126,7 +126,7 @@ const SwipeCards = React.forwardRef<SwipeRef, PropsWithChildren<Props>>(({ child
               className="border-current border-8 border-solid rounded-lg px-2 py-0"
               style={{
                 fontSize: 48,
-                fontFamily: 'Lilita One',
+                // fontFamily: 'Lilita One',
                 backgroundColor: '',
                 fontWeight: 700,
                 position: 'absolute',
