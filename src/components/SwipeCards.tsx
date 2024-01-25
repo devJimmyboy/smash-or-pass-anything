@@ -1,14 +1,14 @@
 // import { useTheme } from '@mui/system'
 import { animated, SpringValue, to as interpolate, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
-import React, { PropsWithChildren, PropsWithRef, useState } from 'react'
+import React, { PropsWithChildren, useState } from 'react'
 import { useWindowSize } from 'react-use'
 
 // import styles from '../styles/Deck.module.css'
 
 import type { SpringRef } from '@react-spring/web'
 
-const RESTORE_DELAY = 350
+// const RESTORE_DELAY = 350
 interface Props {
   onSwipe: (direction: 'left' | 'right' | 'up' | 'down') => void
   smashColor?: string
@@ -37,7 +37,7 @@ export interface SwipeRef {
   swipe: (dir: 'left' | 'right' | 'up' | 'down') => Promise<void>
 }
 const gone: [number] = [0]
-const SwipeCards = React.forwardRef<SwipeRef, PropsWithChildren<Props>>(({ children, onSwipe, passColor = '#FE6B8B', smashColor = '#24D896', canSwipe }, ref) => {
+const SwipeCards = React.forwardRef<SwipeRef, PropsWithChildren<Props>>(({ children, onSwipe, passColor = '#FE6B8B', smashColor = '#24D896' }, ref) => {
   // const theme = useTheme()
   const [word, setWord] = useState('PASS')
   const { width: windowWidth, height: windowHeight } = useWindowSize()
@@ -46,7 +46,7 @@ const SwipeCards = React.forwardRef<SwipeRef, PropsWithChildren<Props>>(({ child
     ...to(0),
     from: from(0),
   })) // Create a bunch of springs using the helpers above
-  const bind = useDrag(({ active, elapsedTime, values: [px, py], movement: [mx, my], direction: [xDir, yDir], velocity: [vx, vy] }) => {
+  const bind = useDrag(({ active, values: [px], movement: [mx], direction: [xDir], velocity: [vx] }) => {
     const trigger = vx > 0.25 // If you flick hard enough it should trigger the card to fly out
     //const dir = mx === 0 ? 0 : mx / Math.abs(mx) // Direction should either be -1 (left), 1 (right), or 0 (none)
     if (word === 'PASS' && px > windowWidth / 2) {

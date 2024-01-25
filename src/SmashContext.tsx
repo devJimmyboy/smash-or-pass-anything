@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useLocalStorage } from 'react-use'
+// import { useLocalStorage } from 'react-use'
 
 export interface Item {
   name: string
@@ -49,7 +49,7 @@ export default function SmashProvider(props: React.PropsWithChildren<{}>) {
         const imageTypes = clipboardItem.types.filter((type) => type.startsWith('image/')) ?? ''
         console.log('getting types', imageTypes)
         for (const imageType of imageTypes) {
-          const blob = await clipboardItem.getType(imageType).catch((err) => {
+          const blob = await clipboardItem.getType(imageType).catch(() => {
             return null
           })
           if (blob === null) {

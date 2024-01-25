@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import SwipeCards, { SwipeRef } from './SwipeCards'
 import { useSmash } from '../SmashContext'
 

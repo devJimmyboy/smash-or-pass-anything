@@ -13,7 +13,7 @@ export default function Settings({ onClose }: Props) {
         const imageTypes = clipboardItem.types.filter((type) => type.startsWith('image/')) ?? ''
         console.log('getting types', imageTypes)
         for (const imageType of imageTypes) {
-          const blob = await clipboardItem.getType(imageType).catch((err) => {
+          const blob = await clipboardItem.getType(imageType).catch(() => {
             return null
           })
           if (blob === null) {
